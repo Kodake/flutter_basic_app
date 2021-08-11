@@ -19,8 +19,9 @@ class _ThirdRouteState extends State<ThirdRoute> {
       crossAxisSpacing: 10,
       mainAxisSpacing: 10,
       crossAxisCount: 2,
+      scrollDirection: Axis.vertical,
       children: <Widget>[
-        for (var i = 1; i <= 9; i++)
+        for (var i = 1; i <= 8; i++)
           InkWell(
             onTap: () => {},
             child: Container(
@@ -41,32 +42,4 @@ class _ThirdRouteState extends State<ThirdRoute> {
       title: Text("Third Route"),
     );
   }
-
-  // Card(
-  //     child: Column(
-  //       mainAxisSize: MainAxisSize.min,
-  //       children: <Widget>[
-  //         const ListTile(
-  //           leading: Icon(Icons.album),
-  //           title: Text('The Enchanted Nightingale'),
-  //           subtitle: Text('Music by Julie Gable. Lyrics by Sidney Stein.'),
-  //         ),
-  //         Row(
-  //           mainAxisAlignment: MainAxisAlignment.end,
-  //           children: <Widget>[
-  //             TextButton(
-  //               child: const Text('BUY TICKETS'),
-  //               onPressed: () {/* ... */},
-  //             ),
-  //             const SizedBox(width: 8),
-  //             TextButton(
-  //               child: const Text('LISTEN'),
-  //               onPressed: () {/* ... */},
-  //             ),
-  //             const SizedBox(width: 8),
-  //           ],
-  //         ),
-  //       ],
-  //     ),
-  //   );
 }

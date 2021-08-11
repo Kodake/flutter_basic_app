@@ -3,9 +3,21 @@ import 'package:flutter_basic/card-elements.dart';
 import 'package:flutter_basic/second-route.dart';
 import 'package:flutter_basic/third-route.dart';
 
+import 'fifth-route.dart';
+import 'fourth-route.dart';
+
 class ShoppingList extends StatefulWidget {
   @override
   _ShoppingListState createState() => _ShoppingListState();
+}
+
+class ItemDrawer {
+  final String name;
+  final Icon icon;
+  final Axis scrollDirect;
+  final String routeName;
+
+  ItemDrawer(this.name, this.icon, this.scrollDirect, this.routeName);
 }
 
 class _ShoppingListState extends State<ShoppingList> {
@@ -59,6 +71,13 @@ class _ShoppingListState extends State<ShoppingList> {
   }
 
   Drawer _drawerSection(BuildContext context) {
+    List<ItemDrawer> myList = [];
+
+    myList.add(ItemDrawer(
+        "Messages", Icon(Icons.message), Axis.vertical, '/fourthRoute'));
+    myList.add(ItemDrawer("Notifications", Icon(Icons.notifications),
+        Axis.horizontal, '/fifthRoute'));
+
     return Drawer(
         child: ListView(
       // Important: Remove any padding from the ListView.
@@ -70,18 +89,14 @@ class _ShoppingListState extends State<ShoppingList> {
           ),
           child: Text('Drawer Header'),
         ),
-        ListTile(
-          title: const Text('Item 1'),
-          onTap: () {
-            Navigator.pop(context);
-          },
-        ),
-        ListTile(
-          title: const Text('Item 2'),
-          onTap: () {
-            Navigator.pop(context);
-          },
-        ),
+        for (var item in myList)
+          ListTile(
+              leading: item.icon,
+              title: Text(item.name),
+              onTap: () {
+                Navigator.pushNamed(context, item.routeName,
+                    arguments: item.scrollDirect);
+              }),
       ],
     ));
   }
@@ -112,7 +127,9 @@ void main() {
     home: ShoppingList(),
     routes: {
       SecondRoute.routeName: (context) => SecondRoute(),
-      ThirdRoute.routeName: (context) => ThirdRoute()
+      ThirdRoute.routeName: (context) => ThirdRoute(),
+      '/fourthRoute': (context) => FourthRoute(),
+      '/fifthRoute': (context) => FifthRoute()
     },
   ));
 }
