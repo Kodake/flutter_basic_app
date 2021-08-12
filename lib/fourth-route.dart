@@ -12,21 +12,18 @@ class _FourthRouteState extends State<FourthRoute> {
     return Scaffold(appBar: _appBarSection(), body: _bodySection());
   }
 
-  SingleChildScrollView _bodySection() {
+  ListView _bodySection() {
     final arg = ModalRoute.of(context)!.settings.arguments as Axis;
 
-    return SingleChildScrollView(
-      scrollDirection: arg,
-      padding: EdgeInsets.all(5.0),
-      child: Column(
-        children: [
-          for (var i = 1; i <= 8; i++) _iteratedWidgets(),
-        ],
-      ),
-    );
+    return ListView.builder(
+        padding: EdgeInsets.all(5.0),
+        itemCount: 10,
+        itemBuilder: (BuildContext context, int index) {
+          return _iteratedWidgets(context, index);
+        });
   }
 
-  Card _iteratedWidgets() {
+  Card _iteratedWidgets(BuildContext context, int index) {
     return Card(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -41,12 +38,16 @@ class _FourthRouteState extends State<FourthRoute> {
             children: <Widget>[
               TextButton(
                 child: const Text('BUY TICKETS'),
-                onPressed: () {/* ... */},
+                onPressed: () {
+                  print(index);
+                },
               ),
               const SizedBox(width: 8),
               TextButton(
                 child: const Text('LISTEN'),
-                onPressed: () {/* ... */},
+                onPressed: () {
+                  print(index);
+                },
               ),
               const SizedBox(width: 8),
             ],

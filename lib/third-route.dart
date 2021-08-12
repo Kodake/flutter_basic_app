@@ -13,27 +13,29 @@ class _ThirdRouteState extends State<ThirdRoute> {
   }
 
   GridView _bodySection() {
-    return GridView.count(
+    return GridView.builder(
       primary: false,
       padding: const EdgeInsets.all(10.0),
-      crossAxisSpacing: 10,
-      mainAxisSpacing: 10,
-      crossAxisCount: 2,
       scrollDirection: Axis.vertical,
-      children: <Widget>[
-        for (var i = 1; i <= 8; i++)
-          InkWell(
-            onTap: () => {},
-            child: Container(
-              padding: const EdgeInsets.all(5.0),
-              child: Text(
-                i.toString() + ' Container Example',
-                style: TextStyle(color: Colors.white, fontSize: 18),
-              ),
-              color: Colors.green[800],
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
+        crossAxisCount: 2,
+      ),
+      itemCount: 10,
+      itemBuilder: (BuildContext context, int index) {
+        return InkWell(
+          onTap: () => {},
+          child: Container(
+            padding: const EdgeInsets.all(5.0),
+            child: Text(
+              index.toString() + ' Container Example',
+              style: TextStyle(color: Colors.white, fontSize: 18),
             ),
+            color: Colors.green[800],
           ),
-      ],
+        );
+      },
     );
   }
 

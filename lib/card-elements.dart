@@ -28,7 +28,7 @@ class _CardElementsState extends State<CardElements> {
     return Scaffold(body: _bodySection(context));
   }
 
-  SingleChildScrollView _bodySection(BuildContext context) {
+  ListView _bodySection(BuildContext context) {
     List<ExampleClass> myList = [];
 
     myList.add(ExampleClass("15 Sreet 16 Ave. NY", "155-155-1555",
@@ -39,86 +39,80 @@ class _CardElementsState extends State<CardElements> {
         "email_300@mail.com", "My 3rd message"));
     myList.add(ExampleClass("45 Sreet 46 Ave. LA", "455-455-4555",
         "email_400@mail.com", "My 4th message"));
+    myList.add(ExampleClass("55 Sreet 56 Ave. LA", "555-555-5555",
+        "email_500@mail.com", "My 5th message"));
 
-    Widget _iteratedWidgets() {
-      return Column(
-        children: <Widget>[
-          for (var item in myList)
-            SizedBox(
-              height: 210,
-              child: Card(
-                child: Column(
-                  children: [
-                    ListTile(
-                      onTap: () {
-                        Navigator.pushNamed(
-                          context,
-                          SecondRoute.routeName,
-                          arguments: ScreenArguments(
-                            item.name,
-                            item.message,
-                          ),
-                        );
-                      },
-                      title: Text(item.name,
-                          style: TextStyle(fontWeight: FontWeight.w500)),
-                      subtitle: Text(item.name),
-                      leading: Icon(
-                        Icons.streetview,
-                        color: Colors.blue[500],
-                      ),
+    return ListView.builder(
+      padding: EdgeInsets.all(5.0),
+      itemCount: myList.length,
+      itemBuilder: (BuildContext context, int index) {
+        return Column(children: <Widget>[
+          SizedBox(
+            height: 210,
+            child: Card(
+              child: Column(
+                children: [
+                  ListTile(
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        SecondRoute.routeName,
+                        arguments: ScreenArguments(
+                          myList[index].name,
+                          myList[index].message,
+                        ),
+                      );
+                    },
+                    title: Text(myList[index].name,
+                        style: TextStyle(fontWeight: FontWeight.w500)),
+                    subtitle: Text(myList[index].name),
+                    leading: Icon(
+                      Icons.streetview,
+                      color: Colors.blue[500],
                     ),
-                    Divider(),
-                    ListTile(
-                      onTap: () {
-                        Navigator.pushNamed(
-                          context,
-                          SecondRoute.routeName,
-                          arguments: ScreenArguments(
-                            item.phone,
-                            item.message,
-                          ),
-                        );
-                      },
-                      title: Text(item.phone,
-                          style: TextStyle(fontWeight: FontWeight.w500)),
-                      leading: Icon(
-                        Icons.contact_phone,
-                        color: Colors.blue[500],
-                      ),
+                  ),
+                  Divider(),
+                  ListTile(
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        SecondRoute.routeName,
+                        arguments: ScreenArguments(
+                          myList[index].phone,
+                          myList[index].message,
+                        ),
+                      );
+                    },
+                    title: Text(myList[index].phone,
+                        style: TextStyle(fontWeight: FontWeight.w500)),
+                    leading: Icon(
+                      Icons.contact_phone,
+                      color: Colors.blue[500],
                     ),
-                    ListTile(
-                      onTap: () {
-                        Navigator.pushNamed(
-                          context,
-                          SecondRoute.routeName,
-                          arguments: ScreenArguments(
-                            item.email,
-                            item.message,
-                          ),
-                        );
-                      },
-                      title: Text(item.email),
-                      leading: Icon(
-                        Icons.contact_mail,
-                        color: Colors.blue[500],
-                      ),
+                  ),
+                  ListTile(
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        SecondRoute.routeName,
+                        arguments: ScreenArguments(
+                          myList[index].email,
+                          myList[index].message,
+                        ),
+                      );
+                    },
+                    title: Text(myList[index].email),
+                    leading: Icon(
+                      Icons.contact_mail,
+                      color: Colors.blue[500],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-        ],
-      );
-    }
-
-    return SingleChildScrollView(
-      padding: EdgeInsets.all(5.0),
-      child: Column(
-        children: [
-          _iteratedWidgets(),
-        ],
-      ),
+          ),
+        ]);
+      },
     );
   }
 }

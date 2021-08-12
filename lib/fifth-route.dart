@@ -12,33 +12,49 @@ class _FifthRouteState extends State<FifthRoute> {
     return Scaffold(appBar: _appBarSection(), body: _bodySection());
   }
 
-  Container _bodySection() {
-    final arg = ModalRoute.of(context)!.settings.arguments as Axis;
-    int _index = 0;
-
-    return Container(
-        margin: EdgeInsets.symmetric(vertical: 10.0),
-        height: 200.0,
-        child: PageView.builder(
-            itemCount: 10,
-            controller: PageController(viewportFraction: 0.7),
-            onPageChanged: (int index) => setState(() => _index = index),
-            itemBuilder: (_i, i) {
-              return Transform.scale(
-                scale: i == _index || i == 9 ? 1 : 0.9,
-                child: Card(
-                  elevation: 6,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Center(
-                    child: Text(
-                      "Card ${i + 1}",
-                      style: TextStyle(fontSize: 32),
-                    ),
-                  ),
-                ),
-              );
-            }));
+  GridView _bodySection() {
+    return GridView.builder(
+      primary: false,
+      padding: EdgeInsets.only(top: 25, bottom: 450, left: 10, right: 10),
+      scrollDirection: Axis.horizontal,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        childAspectRatio: 1,
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
+        crossAxisCount: 1,
+      ),
+      itemCount: 20,
+      itemBuilder: (BuildContext context, int index) {
+        return InkWell(
+          child: Container(
+            padding: const EdgeInsets.all(25.0),
+            child: Text(
+              '$index Container Example',
+              style: TextStyle(color: Colors.white, fontSize: 18),
+            ),
+            color: Colors.green[800],
+          ),
+          onTap: () => {
+            showDialog<String>(
+                context: context,
+                builder: (BuildContext context) => AlertDialog(
+                      title: Text('The current index is: $index'),
+                      content: Text('$index Container Example'),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () => Navigator.pop(context, 'Cancel'),
+                          child: const Text('Cancel'),
+                        ),
+                        TextButton(
+                          onPressed: () => Navigator.pop(context, 'OK'),
+                          child: const Text('OK'),
+                        ),
+                      ],
+                    )),
+          },
+        );
+      },
+    );
   }
 
   AppBar _appBarSection() {
