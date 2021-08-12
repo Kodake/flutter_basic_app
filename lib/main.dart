@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_basic/card-elements.dart';
 import 'package:flutter_basic/second-route.dart';
+import 'package:flutter_basic/sixth-route.dart';
 import 'package:flutter_basic/third-route.dart';
 
 import 'fifth-route.dart';
@@ -42,6 +43,11 @@ class _ShoppingListState extends State<ShoppingList> {
 
   BottomNavigationBar _bottomNavigationBarSection() {
     return BottomNavigationBar(
+      type: BottomNavigationBarType.shifting,
+      mouseCursor: SystemMouseCursors.grab,
+      currentIndex: _selectedIndex,
+      selectedItemColor: Colors.blue[200],
+      onTap: _onItemTapped,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
@@ -64,9 +70,6 @@ class _ShoppingListState extends State<ShoppingList> {
           backgroundColor: Colors.pink,
         ),
       ],
-      currentIndex: _selectedIndex,
-      selectedItemColor: Colors.blue[200],
-      onTap: _onItemTapped,
     );
   }
 
@@ -77,6 +80,8 @@ class _ShoppingListState extends State<ShoppingList> {
         "Messages", Icon(Icons.message), Axis.vertical, '/fourthRoute'));
     myList.add(ItemDrawer("Notifications", Icon(Icons.notifications),
         Axis.horizontal, '/fifthRoute'));
+    myList.add(ItemDrawer(
+        "Stepper", Icon(Icons.list), Axis.horizontal, '/sixthRoute'));
 
     return Drawer(
         child: ListView(
@@ -129,7 +134,8 @@ void main() {
       SecondRoute.routeName: (context) => SecondRoute(),
       ThirdRoute.routeName: (context) => ThirdRoute(),
       '/fourthRoute': (context) => FourthRoute(),
-      '/fifthRoute': (context) => FifthRoute()
+      '/fifthRoute': (context) => FifthRoute(),
+      '/sixthRoute': (context) => SixthRoute()
     },
   ));
 }

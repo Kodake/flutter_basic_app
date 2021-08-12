@@ -15,8 +15,6 @@ class _FourthRouteState extends State<FourthRoute> {
   SingleChildScrollView _bodySection() {
     final arg = ModalRoute.of(context)!.settings.arguments as Axis;
 
-    print(arg);
-
     return SingleChildScrollView(
       scrollDirection: arg,
       padding: EdgeInsets.all(5.0),
