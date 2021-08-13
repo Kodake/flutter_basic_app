@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_basic/bottomnavigationbar-elements.dart';
-import 'package:flutter_basic/card-elements.dart';
-import 'package:flutter_basic/drawer-elements.dart';
-import 'package:flutter_basic/floatingactionbutton-elements.dart';
+import 'package:flutter_basic/elements/bottomnavigationbar-elements.dart';
+import 'package:flutter_basic/elements/card-elements.dart';
+import 'package:flutter_basic/elements/drawer-elements.dart';
+import 'package:flutter_basic/elements/floatingactionbutton-elements.dart';
 import 'package:flutter_basic/second-route.dart';
 import 'package:flutter_basic/third-route.dart';
 import 'package:flutter_basic/fourth-route.dart';

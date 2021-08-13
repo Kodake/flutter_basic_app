@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_basic/card-elements.dart';
+import 'package:flutter_basic/elements/card-elements.dart';
 
 class SecondRoute extends StatefulWidget {
   static const routeName = '/extractArgsFromSecondRoute';
