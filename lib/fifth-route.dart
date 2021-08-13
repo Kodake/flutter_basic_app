@@ -19,7 +19,6 @@ class _FifthRouteState extends State<FifthRoute> {
       height: 250.0,
       child: GridView.builder(
         primary: false,
-        // padding: EdgeInsets.all(10.0),
         scrollDirection: arg,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           childAspectRatio: 1,
