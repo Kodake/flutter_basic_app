@@ -41,12 +41,24 @@ class _DrawerElementsState extends State<DrawerElements> {
       padding: EdgeInsets.zero,
       children: [
         Container(
-          height: 75.0,
-          child: const DrawerHeader(
+          height: 70.0,
+          child: DrawerHeader(
             decoration: BoxDecoration(
               color: Colors.blue,
             ),
-            child: Text('Drawer Header'),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text('Drawer Header',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 20.0, color: Colors.white)),
+                IconButton(
+                  icon: Icon(Icons.arrow_back),
+                  color: Colors.white,
+                  onPressed: () => {Navigator.pop(context)},
+                )
+              ],
+            ),
           ),
         ),
         for (var item in myList)
